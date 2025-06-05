@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         arch: [32]
-        build_type: [basic, full]
+        build_type: [basic]
         include:
           - arch: 32
             build_type: basic

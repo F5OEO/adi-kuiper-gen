@@ -9,12 +9,11 @@ jobs:
       contents: read
     strategy:
       matrix:
-        kuiper_artifact: [kuiper_basic_32, kuiper_basic_64]
+        kuiper_artifact: [kuiper_basic_32]
         include:
             - kuiper_artifact: kuiper_basic_32
               arch: linux/arm
-            - kuiper_artifact: kuiper_basic_64
-              arch: linux/arm64
+            
     steps:
       - name: Login to DockerHub
         uses: docker/login-action@v1
