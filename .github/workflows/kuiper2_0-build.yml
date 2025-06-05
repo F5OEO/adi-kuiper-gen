@@ -12,21 +12,13 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        arch: [32, 64]
+        arch: [32]
         build_type: [basic, full]
         include:
           - arch: 32
             build_type: basic
             os: ubuntu-latest
-          - arch: 64
-            build_type: basic
-            os: ubuntu-latest
-          - arch: 32
-            build_type: full
-            os: [self-hosted, kuiper32_full]
-          - arch: 64
-            build_type: full
-            os: ubuntu-latest
+          
       fail-fast: false
     steps:
       - uses: actions/checkout@v3
