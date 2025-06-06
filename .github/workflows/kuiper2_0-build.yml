@@ -59,13 +59,13 @@ jobs:
       - name: Create Archive
         run: >
           mkdir tezuka_kuiper_all && 
-          mv ${{ github.workspace }}/kuiper-volume/*.zip tezuka_kuiper_all/  
+          mv ${{ github.workspace }}/*.zip tezuka_kuiper_all/  
           
           
       - uses: actions/upload-artifact@v4
         with:
-          name: tezuka_all
-          path: tezuka_all/
+          name: tezuka_kuiper_all
+          path: tezuka_kuiper_all/
 
   update_nightly_release:
             needs: [create_full_archive]
