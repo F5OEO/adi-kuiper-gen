@@ -47,14 +47,37 @@ jobs:
         with:
           name: ${{ env.ARTIFACT_NAME }}_image
           path: ${{ github.workspace }}/kuiper-volume/*.zip
-      - name: Upload meta
-        if: always()
-        uses: actions/upload-artifact@v4
+     
+  create_full_archive:
+      needs: ['Build']
+      runs-on: ubuntu-latest
+
+      steps:
+      - name: Download All Builds
+        uses: actions/download-artifact@v4
+
+      - name: Create Archive
+        run: >
+          mkdir tezuka_kuiper_all && 
+          mv kuiper-volume/*.zip tezuka_kuiper_all/  
+          
+          
+      - uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.ARTIFACT_NAME }}_meta
-          path: |
-            ${{ github.workspace }}/kuiper-volume
-            !${{ github.workspace }}/kuiper-volume/*.zip
+          name: tezuka_all
+          path: tezuka_all/
+
+  update_nightly_release:
+            needs: [create_full_archive]
+            runs-on: ubuntu-latest
+          
+
+            steps:
+            - name: Download All Builds
+              uses: actions/download-artifact@v4
+
+            - name: Update Nightly
+              run: gh release create $GITHUB_REF_NAME tezuka_kuiper_all/* -R ${{github.repository}} --generate-notes
 
   Trigger_workflow:
     needs: Build
