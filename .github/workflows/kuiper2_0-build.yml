@@ -47,20 +47,16 @@ jobs:
         with:
           name: ${{ env.ARTIFACT_NAME }}_image
           path: ${{ github.workspace }}/kuiper-volume/*.zip
-     
-  create_full_archive:
-      needs: ['Build']
-      runs-on: ubuntu-latest
 
-      steps:
       - name: Download All Builds
         uses: actions/download-artifact@v4
-
+  
       - name: Update Nightly
-      
+        
         run: gh release create $GITHUB_REF_NAME ${{ env.ARTIFACT_NAME }}_image/* -R ${{github.repository}} --generate-notes
         env:
-          GH_TOKEN: ${{ github.token }}  
+            GH_TOKEN: ${{ github.token }}     
+   
       
   Trigger_workflow:
     needs: Build
