@@ -58,7 +58,7 @@ jobs:
 
       - name: Update Nightly
       
-        run: gh release create $GITHUB_REF_NAME * -R ${{github.repository}} --generate-notes
+        run: gh release create $GITHUB_REF_NAME ${{ env.ARTIFACT_NAME }}_image/* -R ${{github.repository}} --generate-notes
         env:
           GH_TOKEN: ${{ github.token }}  
       
