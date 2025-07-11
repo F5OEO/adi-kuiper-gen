@@ -50,10 +50,23 @@ jobs:
 
       - name: Download All Builds
         uses: actions/download-artifact@v4
+      
+      - name: Get Commit SHA
+        id: get_sha
+        run: echo "sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
   
-      - name: Update Nightly
-        
-        run: gh release create $GITHUB_REF_NAME ${{ env.ARTIFACT_NAME }}_image/* -R ${{github.repository}} --generate-notes
+      - name: Create Tag
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git tag -a tag-${{ steps.get_sha.outputs.sha }} -m "Release for commit ${{ steps.get_sha.outputs.sha }}"
+          git push origin tag-${{ steps.get_sha.outputs.sha }}
+  
+      - name: Upload Release Assets
+        run: |
+          gh release create tag-${{ steps.get_sha.outputs.sha }} ${{ env.ARTIFACT_NAME }}_image/* \
+            --repo ${{ github.repository }} \
+            --generate-notes  
         env:
             GH_TOKEN: ${{ github.token }}     
    
