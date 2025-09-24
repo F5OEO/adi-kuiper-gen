@@ -1,0 +1,9 @@
+libasound2-dev
+libubootenv-tool
+vlc
+ffmpeg
+gqrx-sdr
+python3-matplotlib
+python3-websockets
+python3-tabulate
+inspectrum
