@@ -9,6 +9,7 @@ TARGET_ARCHITECTURE=armhf
 #
 # Set the Debian version for Kuiper. Options: bullseye, bookworm.
 DEBIAN_VERSION=bookworm
+#DEBIAN_VERSION=trixie
 #
 # Preserve the Docker container.
 PRESERVE_CONTAINER=n
@@ -225,3 +226,15 @@ EXPORT_SOURCES=n
 #
 #
 #############################################################################
+
+
+# [TEZUKA SPECIFIC]
+CONFIG_MAIA=y
+CONFIG_SOAPY_TEZUKA=y
+CONFIG_SATDUMP=y
+CONFIG_SDRPP=y
+CONFIG_VBAN=y
+CONFIG_LUARADIO=y
+CONFIG_SIGDIGGER=y
+CONFIG_INSPECTRUM=n
+CONFIG_GRBOKEH=y
