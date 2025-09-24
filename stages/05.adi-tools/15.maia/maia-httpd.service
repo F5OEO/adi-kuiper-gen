@@ -1,0 +1,21 @@
+# Maiasdr - Systemd init script
+#
+# Copyright (C) 2025 Evariste F5OEO
+
+[Unit]
+Description=Maia-httpd Daemon
+After=network.target
+ConditionPathExists=/sys/bus/iio
+
+[Service]
+WorkingDirectory=/home/analog/maia
+
+ExecStartPre=/sbin/insmod /home/analog/maia/maia-sdr.ko
+
+ExecStart=/home/analog/maia/maia-httpd
+
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+Alias=maia-httpd.service
