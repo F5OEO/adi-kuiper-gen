@@ -15,6 +15,7 @@ RESET="`tput sgr0`"
 
 export LOG_FILE="kuiper-volume/build.log"
 export GITHUB_ANALOG_DEVICES="https://github.com/analogdevicesinc"
+export GITHUB_F5OEO="https://github.com/F5OEO"
 export ADI_REPOS="ADI_repos_git_info.txt"
 export TARGET_ARCHITECTURE=${TARGET_ARCHITECTURE:-armhf}
 export BUILD_DIR=${TARGET_ARCHITECTURE}_rootfs
@@ -69,6 +70,17 @@ export CARRIER=${CARRIER:-""}
 export EXTRA_SCRIPT=${EXTRA_SCRIPT:-""}
 export INSTALL_RPI_PACKAGES=${INSTALL_RPI_PACKAGES:-n}
 
+# TEZUKA ADDS 
+export CONFIG_MAIA=${CONFIG_MAIA:-n}
+export CONFIG_SOAPY_TEZUKA=${CONFIG_SOAPY_TEZUKA:-n}
+export CONFIG_SATDUMP=${CONFIG_SATDUMP:-n}
+export CONFIG_SDRPP=${CONFIG_SDRPP:-n}
+
+export CONFIG_VBAN=${CONFIG_VBAN:-n}
+export CONFIG_LUARADIO=${CONFIG_LUARADIO:-n}
+export CONFIG_SIGDIGGER=${CONFIG_SIGDIGGER:-n}
+export CONFIG_GRBOKEH=${CONFIG_GRBOKEH:-n}
+
 # Check if architecture is supported
 if [[ ! ${TARGET_ARCHITECTURE} = armhf && ! ${TARGET_ARCHITECTURE} = arm64 ]]; then
 	echo "Unsupported architecture ${TARGET_ARCHITECTURE}"
@@ -119,6 +131,10 @@ chroot "${BUILD_DIR}" << EOF
 	elif ([ -e "${1}"/packages-colorimeter ] && [ "${CONFIG_COLORIMETER}" = y ])
 	then
 		xargs -a "${1}"/packages-colorimeter apt-get install --no-install-recommends -y
+	elif ([ -e "${1}"/packages-SatDump ] && [ "${CONFIG_SATDUMP}" = y ])
+	then
+		xargs -a "${1}"/packages-SatDump apt-get install --no-install-recommends -y
+		
 	fi
 EOF
 }
@@ -127,7 +143,7 @@ export -f install_packages
 # Run every 'run.sh' script inside 'stages' directory and install corresponding packages.
 # 'find' command is used to search in every directory inside 'stages' and locate every 'run.sh' in alphanumeric order.
 # The packages are located in '00.install-packages' directory in every substage.
-for script in $(find stages -type f -name run.sh | sort); do
+for script in $(find  -type f -name run.sh | sort); do
 	echo "${MAGENTA}Start stage ${script:7:-7}${RESET}"
 	
 	if [ -e "${script%%/run.sh}"/00.install-packages ]; then
