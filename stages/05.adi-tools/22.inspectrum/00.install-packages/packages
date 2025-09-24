@@ -1,0 +1,6 @@
+qt5-make
+qtbase5-dev
+libqt5widgets5
+libqt5gui5
+libqt5opengl5-dev
+libliquid-dev

@@ -1,0 +1,10 @@
+libfftw3-dev
+cmake
+pkg-config
+libliquid-dev
+libsndfile-dev
+qtbase5-dev
+libqt5widgets5
+libqt5gui5
+libqt5opengl5-dev
+qttools5-dev-tools
