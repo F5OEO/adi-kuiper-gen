@@ -14,6 +14,10 @@ install -m 644 "${BASH_SOURCE%%/run.sh}"/files/x11vnc.service "${BUILD_DIR}/lib/
 # Add xserver service
 install -m 644 "${BASH_SOURCE%%/run.sh}"/files/xserver.service "${BUILD_DIR}/lib/systemd/system/"
 
+# Add novnc service
+install -m 644 "${BASH_SOURCE%%/run.sh}"/files/novnc.service "${BUILD_DIR}/lib/systemd/system/"
+
+
 # Add xserver script
 install -m 755 "${BASH_SOURCE%%/run.sh}"/files/adi-xserver.sh	 "${BUILD_DIR}/usr/bin/"
 
@@ -30,6 +34,7 @@ chroot "${BUILD_DIR}" << EOF
 	# Enable VNC and xserver services to run automatically at every boot
 	systemctl enable x11vnc
 	systemctl enable xserver
+	systemctl enable novnc
 EOF
 
 else

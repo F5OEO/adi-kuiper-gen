@@ -1,0 +1,15 @@
+[Unit]
+Description=noVNC proxy for x11vnc
+Wants=x11vnc.service
+After=x11vnc.service
+
+[Service]
+Type=simple
+ExecStart=/usr/share/novnc/utils/novnc_proxy --vnc localhost:5900 --listen 6080
+Restart=on-failure
+Restart=always
+User=analog
+TimeoutStartSec=60
+
+[Install]
+WantedBy=multi-user.target
