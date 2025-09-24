@@ -10,7 +10,7 @@ if [ "${CONFIG_GNURADIO}" = y ]; then
 
 # Install Gnuradio 3.10.5
 chroot "${BUILD_DIR}" << EOF
-	apt-get install -y gnuradio gnuradio-dev --no-install-recommends
+	apt-get install -y gnuradio gnuradio-dev gr-satellites --no-install-recommends
 EOF
 
 else
