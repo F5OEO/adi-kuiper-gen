@@ -8,12 +8,14 @@
 
 if [ "${CONFIG_SIGDIGGER}" = y ]; then
 
-cp stages/05.adi-tools/21.sigdigger/blsd.sh /usr/local/src/
+#cp stages/05.adi-tools/21.sigdigger/blsd.sh "${BUILD_DIR}/usr/local/src/"
 
 chroot "${BUILD_DIR}" << EOF
 	cd /usr/local/src
-	bash blsd.h
-	cp -r blsd-dir/SigDigger /usr/local/bin
+	cp /stages/05.adi-tools/21.sigdigger/blsd.sh ./
+
+	bash ./blsd.h
+	cp -r ./blsd-dir/SigDigger /usr/local/bin
 		
 EOF
 
