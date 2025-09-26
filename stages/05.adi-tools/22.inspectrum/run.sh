@@ -26,5 +26,5 @@ EOF
 
 else
 	echo "Inspectrum won't be installed because CONFIG_INSPECTRUM is set to 'n'."
-	echo "And inspectrum is installed by apt
+	
 fi
