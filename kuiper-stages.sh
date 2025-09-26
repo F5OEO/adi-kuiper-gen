@@ -140,16 +140,51 @@ EOF
 }
 export -f install_packages
 
+MAGENTA='\033[1;35m'
+RESET='\033[0m'
+
+# If an argument is given, restrict search to that stage
+if [ $# -gt 0 ]; then
+    search_path="stages/$1"
+else
+    search_path="stages"
+fi
+
+find "$search_path" -type f -name "run.sh" | sort | while read -r script; do
+    stage_dir="$(dirname "$script")"
+    stage_name="$(basename "$stage_dir")"
+    done_file="${stage_dir}/done"
+
+    # Skip if "done" file exists
+    if [ -f "$done_file" ]; then
+        echo "Skipping stage ${stage_name} (already done)"
+        continue
+    fi
+
+    echo -e "${MAGENTA}Start stage ${stage_name}${RESET}"
+
+    if [ -d "${stage_dir}/00.install-packages" ]; then
+        install_packages "${stage_dir}/00.install-packages"
+    fi
+
+    bash -e "$script"
+
+    # Mark stage as completed
+    touch "$done_file"
+
+    echo "End stage ${stage_name}"
+done
+
 # Run every 'run.sh' script inside 'stages' directory and install corresponding packages.
 # 'find' command is used to search in every directory inside 'stages' and locate every 'run.sh' in alphanumeric order.
 # The packages are located in '00.install-packages' directory in every substage.
-for script in $(find  -type f -name run.sh | sort); do
-	echo "${MAGENTA}Start stage ${script:7:-7}${RESET}"
+#for script in $(find  -type f -name run.sh | sort); do
+#	echo "${MAGENTA}Start stage ${script:7:-7}${RESET}"
 	
-	if [ -e "${script%%/run.sh}"/00.install-packages ]; then
-		install_packages "${script%%/run.sh}"/00.install-packages
-	fi
-	
-	bash -e ${script}
-	echo "End stage ${script:7:-7}"
-done
+#	if [ -e "${script%%/run.sh}"/00.install-packages ]; then
+#		install_packages "${script%%/run.sh}"/00.install-packages
+#	fi
+#	
+#	bash -e ${script}
+#	echo "End stage ${script:7:-7}"
+#done
