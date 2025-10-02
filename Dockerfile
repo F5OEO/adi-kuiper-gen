@@ -10,7 +10,7 @@ RUN apt-get -y update && \
         rsync grep xxd kmod bc udev jq \
         build-essential gcc-arm-linux-gnueabihf \
         u-boot-tools gcc-aarch64-linux-gnu gnupg \
-        binfmt-support ca-certificates qemu-utils fdisk \
+        binfmt-support ca-certificates qemu-utils fdisk unzip\
     && rm -rf /var/lib/apt/lists/*
     
 COPY . .
