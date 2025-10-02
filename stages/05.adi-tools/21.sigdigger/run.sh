@@ -14,10 +14,10 @@ chroot "${BUILD_DIR}" << EOF
 	cd /usr/local/src
 	cp /stages/05.adi-tools/21.sigdigger/blsd.sh ./
 
-	
+	mount -t proc proc /proc
 	bash ./blsd.sh 
 	cp -r ./blsd-dir/SigDigger /usr/local/bin
-		
+	umount /proc	
 EOF
 
 else

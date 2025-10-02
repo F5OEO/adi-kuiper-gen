@@ -11,6 +11,6 @@ chroot "${BUILD_DIR}" << EOF
 	#need for file explorer, new
 	touch /home/analog/Templates/newfile.txt
 	#needed by sigdigger for example to know how many proc in machine
-	mount -t proc proc /proc
+	#mount -t proc proc /proc
 	#sed -i 's/^#\(kernel\.printk = 3 4 1 3\)/\1/' /etc/sysctl.conf
 EOF
