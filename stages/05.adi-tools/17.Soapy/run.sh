@@ -17,6 +17,11 @@ chroot "${BUILD_DIR}" << EOF
 	cd /usr/local/src/SoapyPlutoPAPR
 	mkdir build && cd build && cmake .. && make install
 	
+	cd /usr/local/src
+	git clone https://github.com/pothosware/SoapyPlutoSDR
+	cd SoapyPlutoSDR
+	mkdir build && cd build && cmake .. && make install
+
 EOF
 
 else
