@@ -19,7 +19,7 @@ chroot "${BUILD_DIR}" << EOF
 	
  	git clone https://github.com/gnuradio/gr-bokehgui
 	cd gr-bokehgui
-	mkdir build && cd build
+	mkdir -p build && cd build
 	cmake ../ -DCMAKE_INSTALL_PREFIX=/usr
 	make -j7
 	make install
