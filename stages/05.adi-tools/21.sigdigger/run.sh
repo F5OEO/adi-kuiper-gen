@@ -14,7 +14,8 @@ chroot "${BUILD_DIR}" << EOF
 	cd /usr/local/src
 	cp /stages/05.adi-tools/21.sigdigger/blsd.sh ./
 
-	bash ./blsd.h
+	
+	bash ./blsd.sh 
 	cp -r ./blsd-dir/SigDigger /usr/local/bin
 		
 EOF
