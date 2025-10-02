@@ -1,0 +1,2 @@
+sudo readsb --device-type soapysdr --soapy-device driver=plutosdr,uri=local: --interactive --sdr-buffer-size=32
+#sudo readsb --net-only --max-range 360 --lat 45.65 --lon 0.52 --net --net-heartbeat 60 --net-ro-size 1000 --net-ro-interval 0.2 --net-ri-port 29001 --net-ro-port 29002 --net-sbs-port 29003 --net-bi-port 29004 --net-bo-port 29005 --net-sbs-in-port 29106 --json-location-accuracy 2 --write-json /run/dump1090 --quiet
