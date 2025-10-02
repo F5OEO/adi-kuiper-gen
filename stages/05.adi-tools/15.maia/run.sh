@@ -6,7 +6,18 @@
 # Copyright (c) 2024 Analog Devices, Inc.
 # Author: Larisa Radu <larisa.radu@analog.com>
 
+
 if [ "${CONFIG_MAIA}" = y ]; then
+cp -r "${BASH_SOURCE%%/run.sh}"/files/	"${BUILD_DIR}/home/analog/maia/"
+install -m 644 "${BASH_SOURCE%%/run.sh}"/maia-httpd.service	"${BUILD_DIR}/lib/systemd/system/"
+
+else
+	echo "maia won't be installed because CONFIG_MAIA_SRC is set to 'n'."
+fi
+
+
+
+if [ "${CONFIG_MAIA_SRC}" = y ]; then
 #copy iqengine AND maiasdr.ko
 cp -r "${BASH_SOURCE%%/run.sh}"/files/	"${BUILD_DIR}/home/analog/maia/"
 #install httpmaia service
@@ -43,7 +54,7 @@ chroot "${BUILD_DIR}" << EOF
 EOF
 
 else
-	echo "maia won't be installed because CONFIG_MAIA is set to 'n'."
+	echo "maia won't be installed because CONFIG_MAIA_SRC is set to 'n'."
 fi
 
 #https://deepwiki.com/maia-sdr/maia-sdr/3.1-rest-api
