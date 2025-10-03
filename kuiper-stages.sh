@@ -6,7 +6,7 @@
 # Copyright (c) 2024 Analog Devices, Inc.
 # Author: Larisa Radu <larisa.radu@analog.com>
 
-set -e
+#set -e
 source config
 
 # Declare ANSI escape codes to color the output in the terminal
