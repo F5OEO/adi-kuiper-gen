@@ -1,0 +1,4 @@
+gfortran
+libgfortran5
+libgfortran-12-dev
+clang
