@@ -9,3 +9,5 @@ python3-tabulate
 inspectrum
 gpredict
 gnuplot-x11
+octave
+octave-signal
