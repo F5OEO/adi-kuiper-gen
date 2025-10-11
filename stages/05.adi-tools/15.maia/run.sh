@@ -11,7 +11,12 @@ if [ "${CONFIG_MAIA}" = y ]; then
 mkdir -p /home/analog/maia
 cp -r "${BASH_SOURCE%%/run.sh}"/files/	"${BUILD_DIR}/home/analog/maia/"
 install -m 644 "${BASH_SOURCE%%/run.sh}"/maia-httpd.service	"${BUILD_DIR}/lib/systemd/system/"
+chroot "${BUILD_DIR}" << EOF
+
 systemctl enable maia-httpd.service
+
+EOF
+
 else
 	echo "maia won't be installed because CONFIG_MAIA is set to 'n'."
 fi
