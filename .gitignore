@@ -2,3 +2,4 @@ kuiper-volume/*
 .pc
 *-pc
 apt-cacher-ng/
+target_root/
