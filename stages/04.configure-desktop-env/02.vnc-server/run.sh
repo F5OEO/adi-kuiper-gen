@@ -35,6 +35,11 @@ chroot "${BUILD_DIR}" << EOF
 	systemctl enable x11vnc
 	systemctl enable xserver
 	systemctl enable novnc
+
+	#for PULSEAUDIO ENV
+	echo "xport XDG_RUNTIME_DIR=/run/user/$(id -u)" > /home/analog/.vnc/xstartup
+	echo "export PULSE_SERVER=unix:$XDG_RUNTIME_DIR/pulse/native" >> /home/analog/.vnc/xstartup
+
 EOF
 
 else
