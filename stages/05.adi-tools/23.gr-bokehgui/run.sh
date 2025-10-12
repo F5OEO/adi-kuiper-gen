@@ -23,7 +23,7 @@ chroot "${BUILD_DIR}" << EOF
 	cmake ../ -DCMAKE_INSTALL_PREFIX=/usr
 	make -j7
 	make install
-		
+	mv /usr/lib/python3.11/site-packages/bokehgui /usr/lib/python3.11/dist-packages/bokehgui 
 EOF
 
 else
