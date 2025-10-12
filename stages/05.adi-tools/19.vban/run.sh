@@ -15,10 +15,10 @@ chroot "${BUILD_DIR}" << EOF
 	# Clone papr
 	git clone https://github.com/quiniouben/vban
 	cd /usr/local/src/vban
-	./autogen.sh &&  ./configure --disable-jack --disable-pulseaudio && make && make install
+	./autogen.sh &&  ./configure --disable-jack  && make && make install
 	
 EOF
 
 else
-	echo "Vban won't be installed because CONFIG_SOAPY_SDRPP is set to 'n'."
+	echo "Vban won't be installed because CONFIG_VBAN is set to 'n'."
 fi
