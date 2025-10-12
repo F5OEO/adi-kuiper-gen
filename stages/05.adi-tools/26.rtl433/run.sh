@@ -14,6 +14,7 @@ if [ "${CONFIG_RTL433}" = y ]; then
 
 
 chroot "${BUILD_DIR}" << EOF
+cd /usr/local/src
 git clone https://github.com/merbanan/rtl_433.git
 cd rtl_433
 mkdir build
