@@ -24,8 +24,9 @@ chroot "${BUILD_DIR}" << EOF
 	done
 
 	# Set the name of the machine to 'analog'
-	echo "Zukaneoper" > /etc/hostname
-	echo "127.0.1.1 Zukaneoper" >> /etc/hosts
+	# Will be set later
+	#echo "Zukaneoper" > /etc/hostname
+	#echo "127.0.1.1 Zukaneoper" >> /etc/hosts
 
 	# Set root PATH to all users for the desktop environment
 	echo 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin' > /etc/environment
