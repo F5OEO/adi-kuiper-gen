@@ -1,0 +1,4 @@
+.include /etc/pulse/default.pa
+load-module module-null-sink sink_name=DummySink sink_properties=device.description=DummyOutput
+set-default-sink DummySink
+

@@ -10,6 +10,7 @@
 if [ "${CONFIG_TEZUKA_TOOLS}" = y ]; then
 
 cp -r "${BASH_SOURCE%%/run.sh}"/files/	"${BUILD_DIR}/home/analog/tools/"
+cp "${BASH_SOURCE%%/run.sh}"/default.pa "${BUILD_DIR}/home/analog/.config/pulse/"
 else
 	echo "tezuka_tools won't be installed because CONFIG_TEUKA_TOOLS is set to 'n'."
 fi
