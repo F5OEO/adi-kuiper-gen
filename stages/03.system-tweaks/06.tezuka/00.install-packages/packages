@@ -11,3 +11,5 @@ gpredict
 gnuplot-x11
 octave
 octave-signal
+alsa-utils
+htop
