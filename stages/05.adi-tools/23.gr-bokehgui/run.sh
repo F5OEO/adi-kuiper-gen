@@ -15,6 +15,7 @@ if [ "${CONFIG_GRBOKEH}" = y ]; then
 chroot "${BUILD_DIR}" << EOF
 
 	cd /usr/local/src
+	pip install --no-deps --break-system-packages narwhals
 	pip install --no-deps --break-system-packages bokeh
 	
  	git clone https://github.com/gnuradio/gr-bokehgui
