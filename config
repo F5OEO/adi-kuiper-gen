@@ -45,7 +45,7 @@ BRANCH_LIBIIO=libiio-v0
 # Pyadi: Analog Devices python interfaces for hardware with Industrial I/O drivers.
 # Github: https://github.com/analogdevicesinc/pyadi-iio
 # *depends on LIBIIO
-CONFIG_PYADI=n
+CONFIG_PYADI=y
 BRANCH_PYADI=main
 #
 # 
