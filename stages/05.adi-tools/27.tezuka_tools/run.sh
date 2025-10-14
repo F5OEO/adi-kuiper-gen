@@ -10,7 +10,8 @@
 if [ "${CONFIG_TEZUKA_TOOLS}" = y ]; then
 
 cp -r "${BASH_SOURCE%%/run.sh}"/files/	"${BUILD_DIR}/home/analog/tools/"
-#mkdir -p "${BUILD_DIR}/home/analog/.config/pulse"
+mkdir -p "${BUILD_DIR}/home/analog/.config/Gpredict"
+cp "${BASH_SOURCE%%/run.sh}"/gpredict.cfg "${BUILD_DIR}/home/analog/.config/Gpredict/"
 #set anonymous
 cp "${BASH_SOURCE%%/run.sh}"/system.pa "${BUILD_DIR}/etc/pulse/"
 cp "${BASH_SOURCE%%/run.sh}"/pulseaudio.service "${BUILD_DIR}/etc/systemd/system/"
