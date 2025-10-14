@@ -37,8 +37,9 @@ chroot "${BUILD_DIR}" << EOF
 	systemctl enable novnc
 
 	#for PULSEAUDIO ENV
-	echo "xport XDG_RUNTIME_DIR=/run/user/$(id -u)" > /home/analog/.vnc/xstartup
-	echo "export PULSE_SERVER=unix:$XDG_RUNTIME_DIR/pulse/native" >> /home/analog/.vnc/xstartup
+	#echo "export XDG_RUNTIME_DIR=/run/user/1000" > /home/analog/.vnc/xstartup
+	#echo "export PULSE_SERVER=unix:$XDG_RUNTIME_DIR/pulse/native" >> /home/analog/.vnc/xstartup
+	systemctl enable pulseaudio
 
 EOF
 

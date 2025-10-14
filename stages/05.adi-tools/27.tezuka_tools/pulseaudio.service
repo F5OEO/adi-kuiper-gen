@@ -1,0 +1,12 @@
+[Unit]
+Description=PulseAudio Sound Server (system mode)
+After=sound.target
+
+[Service]
+ExecStart=/usr/bin/pulseaudio --system --disallow-exit --daemonize=no
+Restart=on-failure
+LimitRTPRIO=99
+LimitMEMLOCK=infinity
+
+[Install]
+WantedBy=multi-user.target
