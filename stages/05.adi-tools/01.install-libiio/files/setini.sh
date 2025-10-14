@@ -11,7 +11,8 @@ echo "[Context Attributes]" > /etc/libiio.ini
 model=`cat /sys/firmware/devicetree/base/model | tr / -`
 echo "hw_model=$model" >> /etc/libiio.ini
 
-serial=$(ip link show eth0 | awk '/ether/ {print $2}')
+serial=$(ip link show eth0 | awk '/ether/ {print $2}' | sed 's/://g')
+
 echo -e "hw_serial=$serial\n" >> /etc/libiio.ini
 echo "Zukaneoper-$serial" > /etc/hostname
 echo "127.0.1.1 Zukaneoper-$serial" >> /etc/hosts
