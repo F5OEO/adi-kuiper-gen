@@ -121,6 +121,7 @@ class MaiaPerParamClient:
     def get_rx_gain_mode(self) -> str:
         return str(self.get_ad9361().get("rx_gain_mode"))
 
+    # Manual,FastAttack,SlowAttack,Hybrid
     def set_rx_gain_mode(self, mode: str) -> Dict[str, Any]:
         return self._patch("/api/ad9361", {"rx_gain_mode": str(mode)})
 
@@ -254,6 +255,7 @@ class MaiaPerParamClient:
     def get_spectrometer_input(self) -> str:
         return str(self.get_spectrometer().get("input"))
 
+    #DDC,AD9361
     def set_spectrometer_input(self, src: str) -> Dict[str, Any]:
         return self._patch("/api/spectrometer", {"input": str(src)})
 
@@ -269,9 +271,14 @@ class MaiaPerParamClient:
     def set_spectrometer_number_integrations(self, n: int) -> Dict[str, Any]:
         return self._patch("/api/spectrometer", {"number_integrations": int(n)})
 
+    #Set FPS
+    def set_spectrometer_sampling_frequency(self, n: int) -> Dict[str, Any]:
+        return self._patch("/api/spectrometer", {"output_sampling_frequency": int(n)})
+
     def get_spectrometer_mode(self) -> str:
         return str(self.get_spectrometer().get("mode"))
 
+    #Average, PeakDetect
     def set_spectrometer_mode(self, mode: str) -> Dict[str, Any]:
         return self._patch("/api/spectrometer", {"mode": str(mode)})
 
