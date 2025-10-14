@@ -13,3 +13,4 @@ octave
 octave-signal
 alsa-utils
 htop
+mosquitto-clients 
