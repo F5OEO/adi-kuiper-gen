@@ -8,7 +8,7 @@
 
 # Set the default timezone to America, New York
 chroot "${BUILD_DIR}" << EOF
-	echo "America/New_York" > /etc/timezone
+	echo "Etc/UTC" > /etc/timezone
 	rm /etc/localtime
 	dpkg-reconfigure -f noninteractive tzdata
 EOF
