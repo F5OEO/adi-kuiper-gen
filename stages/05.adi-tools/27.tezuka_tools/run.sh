@@ -17,10 +17,12 @@ install -m 666 "${BASH_SOURCE%%/run.sh}"/gpredict.cfg "${BUILD_DIR}/home/analog/
 #set anonymous
 cp "${BASH_SOURCE%%/run.sh}"/system.pa "${BUILD_DIR}/etc/pulse/"
 cp "${BASH_SOURCE%%/run.sh}"/pulseaudio.service "${BUILD_DIR}/etc/systemd/system/"
+cp "${BASH_SOURCE%%/run.sh}"/mqtt_tezuka.service "${BUILD_DIR}/etc/systemd/system/"
 
 chroot "${BUILD_DIR}" << EOF
 systemctl --user disable pulseaudio.socket pulseaudio.service
 systemctl enable pulseaudio
+systemctl enable mqtt_tezuka
 EOF
 else
 	echo "tezuka_tools won't be installed because CONFIG_TEZUKA_TOOLS is set to 'n'."
