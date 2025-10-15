@@ -13,6 +13,11 @@ ExecStart=/usr/sbin/iiod
 KillMode=process
 Restart=on-failure
 
+ExecStartPost=/bin/chown -R analog:analog /sys/bus/iio/
+ExecStartPost=/bin/chmod -R 750 /sys/bus/iio/
+ExecStartPost=/bin/chown -R analog:analog /sys/kernel/debug/
+ExecStartPost=/bin/chmod -R 750 /sys/kernel/debug/
+
 [Install]
 WantedBy=multi-user.target
 Alias=iiod.service

@@ -9,8 +9,8 @@
 if [ "${CONFIG_LIBIIO}" = y ]; then
 	# Add iiod service
 	install -m 644 "${BASH_SOURCE%%/run.sh}"/files/iiod.service	"${BUILD_DIR}/lib/systemd/system/"
-	cp "${BASH_SOURCE%%/run.sh}"/files/fw_env.config	"${BUILD_DIR}/etc/"
-	cp "${BASH_SOURCE%%/run.sh}"/files/setini.sh "${BUILD_DIR}/home/analog/"
+	install -m 644 "${BASH_SOURCE%%/run.sh}"/files/fw_env.config	"${BUILD_DIR}/etc/"
+	install -m 644 "${BASH_SOURCE%%/run.sh}"/files/setini.sh "${BUILD_DIR}/home/analog/"
 
 chroot "${BUILD_DIR}" << EOF
 	cd /usr/local/src
