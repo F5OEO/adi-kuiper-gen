@@ -66,7 +66,7 @@ Password is analog
 ### Hardware
 
 |      |   Pluto Revb |   Pluto Revc |Pluto Revc clone|   Pluto+ |   Pluto+ (3.3v) | Antsdr e200 | LibreSdr/ZynqSdr |PynqSDR|Signal SDR Pro|Fishball|
-|---       |:-:           |:-:           |:-:       |:-: |:-:            |:-:          |:-:|:-:|:-:|:-:|
+|---   |:-:|:-: |:-:|:-:|:-: |:-:|:-:|:-:|:-:|:-:|
 |Manufacturer       |Analog Device             |Analog Device     |  PIAASDR  |Justin Peng/Howard Su| clone            |AntSDR            |? |regymm| signalens |hamgeek|
 |Common price       |Replaced by Rev C             |280Euros     |170Euros |replaced by 3.3v ?    |234Euros            |430Euros           |190Euros |239Euros |900 Euros|150 Euros|
 |RF Chipset       |AD9363             |AD9363     |AD9363 |AD9363    |AD9363            |AD9363            |AD9363 |AD9363 |AD9361|AD9363 |
@@ -91,7 +91,7 @@ Password is analog
 
 # Software
 
-|      |   Pluto Revb |   Pluto Revc |Pluto Revc clone|   Pluto+ |   Pluto+ Rev2 | Antsdr e200 | LibreSdr/ZynqSdr |PynqSDR|Signal SDR Pro|ishball|
+|      |   Pluto Revb |   Pluto Revc |Pluto Revc clone|   Pluto+ |   Pluto+ Rev2 | Antsdr e200 | LibreSdr/ZynqSdr |PynqSDR|Signal SDR Pro|Fishball|
 |---       |:-:           |:-:           |:-:   |:-:       |:-:            |:-:          |:-:|:-:|:-:|:-:|
 |Official Firmware base   |0.39           |0.39|0.37           |0.33       |0.33            |0.37          |||||
 |Latest Firmware date   |Oct 15, 2024            |Sep 20, 2023           |Jun 18, 2021       |           |          |||||
