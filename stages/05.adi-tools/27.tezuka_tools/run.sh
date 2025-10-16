@@ -12,7 +12,7 @@ if [ "${CONFIG_TEZUKA_TOOLS}" = y ]; then
 cp -r "${BASH_SOURCE%%/run.sh}"/files/	"${BUILD_DIR}/home/analog/tools/"
 #mkdir -p "${BUILD_DIR}/home/analog/.config/Gpredict" ----> .config as root is a very bad IDEA, vnc is not working for example
 #cp "${BASH_SOURCE%%/run.sh}"/gpredict.cfg "${BUILD_DIR}/home/analog/.config/Gpredict/"
-install -d 666 "${BUILD_DIR}/home/analog/.config/Gpredict"
+install -d -m 666 "${BUILD_DIR}/home/analog/.config/Gpredict"
 install -m 666 "${BASH_SOURCE%%/run.sh}"/gpredict.cfg "${BUILD_DIR}/home/analog/.config/Gpredict/"
 #set anonymous
 cp "${BASH_SOURCE%%/run.sh}"/system.pa "${BUILD_DIR}/etc/pulse/"
@@ -23,6 +23,8 @@ chroot "${BUILD_DIR}" << EOF
 systemctl --user disable pulseaudio.socket pulseaudio.service
 systemctl enable pulseaudio
 systemctl enable mqtt_tezuka
+# To be sure that .config is owned by user analog
+chown analog -R /home/analog/.config
 EOF
 else
 	echo "tezuka_tools won't be installed because CONFIG_TEZUKA_TOOLS is set to 'n'."
