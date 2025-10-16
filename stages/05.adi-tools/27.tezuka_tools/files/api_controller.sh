@@ -123,6 +123,20 @@ dump_data () {
     publish "rx/overload" "0"
   fi
 
+  pluto_temp=$(iio_attr ${uri} -c ad9361-phy temp0 input)
+  pluto_temp_celcius=$(awk "BEGIN {printf(\"%.1f\", ${pluto_temp} / 1000)}")
+
+  xadc_raw=$(iio_attr ${uri} -c xadc temp0 raw)
+  # xadc_offset setting by devicetree adi,temp-sense-offset-signed needed to be calibrate for each board : FixMe !
+  xadc_offset=$(iio_attr ${uri} -c xadc temp0 offset)
+  xadc_scale=$(iio_attr ${uri} -c xadc temp0 scale)
+  
+  xadc=$(awk "BEGIN {printf(\"%.1f\", (${xadc_raw} + ${xadc_offset}) * ${xadc_scale}/1000)}")
+
+ publish "main/trx_temp" $pluto_temp_celcius
+ publish "main/fpga_temp" $xadc
+
+
 }
 
 #frequency,span,on
