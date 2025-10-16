@@ -8,6 +8,7 @@ cd libacars
 mkdir build && cd build
 cmake ../
 make install
+ldconfig
 
 cd /usr/local/src
 git clone https://github.com/szpajder/dumpvdl2.git
