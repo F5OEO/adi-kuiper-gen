@@ -65,9 +65,9 @@ Password is analog
 ## Compatible boards
 ### Hardware
 
-|      |   Pluto Revb |   Pluto Revc |Pluto Revc clone|   Pluto+ |   Pluto+ (3.3v) | Antsdr e200 | LibreSdr/ZynqSdr |PynqSDR|Signal SDR Pro|Fishball|
-|---   |:-:|:-: |:-:|:-:|:-: |:-:|:-:|:-:|:-:|:-:|
-|Manufacturer       |Analog Device             |Analog Device     |  PIAASDR  |Justin Peng/Howard Su| clone            |AntSDR            |? |regymm| signalens |hamgeek|
+|      |Pluto Revb|Pluto Revc|Pluto Revc clone|Pluto+|Pluto+ (3.3v)|Antsdr e200| LibreSdr/ZynqSdr|PynqSDR|Signal SDR Pro|Fishball|
+|---   |:-:|:-:|:-:|:-:|:-: |:-:|:-:|:-:|:-:|:-:|
+|Manufacturer       |Analog Device|Analog Device|PIAASDR|Justin Peng/Howard Su| clone|AntSDR|?|regymm|signalens|hamgeek|
 |Common price       |Replaced by Rev C             |280Euros     |170Euros |replaced by 3.3v ?    |234Euros            |430Euros           |190Euros |239Euros |900 Euros|150 Euros|
 |RF Chipset       |AD9363             |AD9363     |AD9363 |AD9363    |AD9363            |AD9363            |AD9363 |AD9363 |AD9361|AD9363 |
 |USB OTG      |Yes             |Yes     |Yes |Yes    |Yes            |No            |yes |yes |yes/USB3 |yes |
