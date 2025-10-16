@@ -17,3 +17,4 @@ mosquitto-clients
 multimon-ng
 qsstv
 nfs-common
+inotify-tools
