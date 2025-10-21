@@ -49,6 +49,8 @@ if [ "${CONFIG_TEZUKA_BOOT_FILES}" = y ]; then
 				cp "$dir/sdimg/devicetree.dtb" "${BUILD_DIR}"/boot/"${dirname}"/
 				cp -r "$dir/sdimg/overclock" "${BUILD_DIR}"/boot/"${dirname}"/
 				cp "$dir/sdimg/uImage" "${BUILD_DIR}"/boot/"${dirname}"/
+				cp "$dir/sdimg/uramdisk.image.gz" "${BUILD_DIR}"/boot/"${dirname}"/
+				  
 			fi
 		done
 
