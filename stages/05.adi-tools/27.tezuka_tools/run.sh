@@ -26,6 +26,9 @@ systemctl enable pulseaudio
 systemctl enable mqtt_tezuka
 # To be sure that .config is owned by user analog
 chown analog -R /home/analog/.config
+cd /home/analog/
+git clone --single-branch --branch throttle https://gitlab.com/gnuradio_book/flowcharts.git
+chown analog -R /home/flowcarts/*
 EOF
 else
 	echo "tezuka_tools won't be installed because CONFIG_TEZUKA_TOOLS is set to 'n'."
