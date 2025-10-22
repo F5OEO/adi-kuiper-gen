@@ -34,7 +34,7 @@ if [ "${CONFIG_TEZUKA_BOOT_FILES}" = y ]; then
 		#cp $TARGET_BOOT/fishball/sdimg/uImage "${BUILD_DIR}"/boot/
 		#Common uEnv.txt
 		cp $TARGET_BOOT/fishball/sdimg/uEnv.txt "${BUILD_DIR}"/boot/
-
+		cp $TARGET_BOOT/fishball/sdimg/uramdisk.image.gz "${BUILD_DIR}"/boot/
 		for dir in "$TARGET_BOOT"/* ; do
 	        [ -d "$dir" ] || continue
 
@@ -49,7 +49,7 @@ if [ "${CONFIG_TEZUKA_BOOT_FILES}" = y ]; then
 				cp "$dir/sdimg/devicetree.dtb" "${BUILD_DIR}"/boot/"${dirname}"/
 				cp -r "$dir/sdimg/overclock" "${BUILD_DIR}"/boot/"${dirname}"/
 				cp "$dir/sdimg/uImage" "${BUILD_DIR}"/boot/"${dirname}"/
-				cp "$dir/sdimg/uramdisk.image.gz" "${BUILD_DIR}"/boot/"${dirname}"/
+				
 				  
 			fi
 		done
