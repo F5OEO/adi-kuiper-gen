@@ -29,6 +29,9 @@ cd /home/analog/
 git clone --single-branch --branch throttle https://gitlab.com/gnuradio_book/flowcharts.git
 # To be sure that everything under analog is owned by analog
 chown -R analog:analog /home/analog 
+# REMOVE SSH KEYS
+rm -rf /etc/ssh/*
+
 EOF
 else
 	echo "tezuka_tools won't be installed because CONFIG_TEZUKA_TOOLS is set to 'n'."
