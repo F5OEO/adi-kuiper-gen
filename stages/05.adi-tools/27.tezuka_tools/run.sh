@@ -24,11 +24,11 @@ chroot "${BUILD_DIR}" << EOF
 systemctl --user disable pulseaudio.socket pulseaudio.service
 systemctl enable pulseaudio
 systemctl enable mqtt_tezuka
-# To be sure that .config is owned by user analog
-chown analog -R /home/analog/.config
+
 cd /home/analog/
 git clone --single-branch --branch throttle https://gitlab.com/gnuradio_book/flowcharts.git
-chown analog -R /home/flowcarts/*
+# To be sure that everything under analog is owned by analog
+chown -R analog:analog /home/analog 
 EOF
 else
 	echo "tezuka_tools won't be installed because CONFIG_TEZUKA_TOOLS is set to 'n'."
