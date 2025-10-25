@@ -1,0 +1,168 @@
+options:
+  parameters:
+    author: ''
+    catch_exceptions: 'True'
+    category: '[GRC Hier Blocks]'
+    cmake_opt: ''
+    comment: ''
+    copyright: ''
+    description: ''
+    gen_cmake: 'On'
+    gen_linking: dynamic
+    generate_options: qt_gui
+    hier_block_src_path: '.:'
+    id: WEBFFT
+    max_nouts: '0'
+    output_language: python
+    placement: (0,0)
+    qt_qss_theme: ''
+    realtime_scheduling: ''
+    run: 'True'
+    run_command: '{python} -u {filename}'
+    run_options: prompt
+    sizing_mode: fixed
+    thread_safe_setters: ''
+    title: webfft
+    window_size: (1000,1000)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 8]
+    rotation: 0
+    state: enabled
+
+blocks:
+- name: samp_rate
+  id: variable
+  parameters:
+    comment: ''
+    value: '32000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [184, 12]
+    rotation: 0
+    state: enabled
+- name: epy_block_0
+  id: epy_block
+  parameters:
+    _source_code: "import numpy as np\nimport asyncio\nimport threading\nimport websockets\n\
+      from gnuradio import gr\n\nclass blk(gr.sync_block):\n    def __init__(self,\
+      \ ws_address=\"ws://127.0.0.1:8000/waterfall\", fft_size=4096):\n        gr.sync_block.__init__(\n\
+      \            self,\n            name=\"WebSocket FFT Receiver\",\n         \
+      \   in_sig=None,\n            out_sig=[(np.float32, fft_size)]  # vector output\
+      \ of fft_size\n        )\n        self.ws_address = ws_address\n        self.fft_size\
+      \ = fft_size\n        self.buffer = None\n        self.lock = threading.Lock()\n\
+      \        self.running = True\n\n    def start(self):\n        def runner():\n\
+      \            asyncio.run(self.spectrum_loop())\n        self.thread = threading.Thread(target=runner,\
+      \ daemon=True)\n        self.thread.start()\n        return super().start()\n\
+      \n    def stop(self):\n        self.running = False\n        return super().stop()\n\
+      \n    async def spectrum_loop(self):\n        async with websockets.connect(self.ws_address)\
+      \ as ws:\n            while self.running:\n                raw = await ws.recv()\n\
+      \                spec = np.frombuffer(raw, dtype=np.float32)\n\n           \
+      \     # Convert to dB scale (power spectrum)\n                spec_db = 10 *\
+      \ np.log10(spec + 1e-12)\n\n                with self.lock:\n              \
+      \      self.buffer = spec_db\n\n    def work(self, input_items, output_items):\n\
+      \        out = output_items[0]\n        with self.lock:\n            if self.buffer\
+      \ is not None:\n                out[0][:] = self.buffer[:self.fft_size]\n  \
+      \          else:\n                out[0][:] = np.zeros(self.fft_size, dtype=np.float32)\n\
+      \        return 1\n\n"
+    affinity: ''
+    alias: ''
+    comment: ''
+    fft_size: '4096'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    ws_address: '"ws://10.0.0.107:8000/waterfall"'
+  states:
+    _io_cache: ('WebSocket FFT Receiver', 'blk', [('ws_address', "'ws://127.0.0.1:8000/waterfall'"),
+      ('fft_size', '4096')], [], [('0', 'float', 4096)], '', ['fft_size', 'ws_address'])
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [248, 220.0]
+    rotation: 0
+    state: true
+- name: qtgui_vector_sink_f_0
+  id: qtgui_vector_sink_f
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    average: '1.0'
+    color1: '"blue"'
+    color10: '"dark blue"'
+    color2: '"red"'
+    color3: '"green"'
+    color4: '"black"'
+    color5: '"cyan"'
+    color6: '"magenta"'
+    color7: '"yellow"'
+    color8: '"dark red"'
+    color9: '"dark green"'
+    comment: ''
+    grid: 'False'
+    gui_hint: ''
+    label1: ''
+    label10: ''
+    label2: ''
+    label3: ''
+    label4: ''
+    label5: ''
+    label6: ''
+    label7: ''
+    label8: ''
+    label9: ''
+    legend: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: '""'
+    nconnections: '1'
+    ref_level: '0'
+    showports: 'False'
+    update_time: '0.10'
+    vlen: '4096'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    x_axis_label: '"x-Axis"'
+    x_start: '0'
+    x_step: '10.0'
+    x_units: '""'
+    y_axis_label: '"y-Axis"'
+    y_units: '""'
+    ymax: '100'
+    ymin: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [584, 196.0]
+    rotation: 0
+    state: true
+
+connections:
+- [epy_block_0, '0', qtgui_vector_sink_f_0, '0']
+
+metadata:
+  file_format: 1
+  grc_version: 3.10.5.1
