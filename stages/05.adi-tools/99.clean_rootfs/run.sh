@@ -9,10 +9,11 @@
 
 if [ "${CONFIG_CLEAN_ROOTFS}" = y ]; then
 
-rm -rf	"${BUILD_DIR}/usr/local/src/*"
-rm -rf	"${BUILD_DIR}/usr/share/doc/*"
-
 chroot "${BUILD_DIR}" << EOF
+echo cleaning...
+
+rm -r /usr/local/src/*
+rm -r /usr/share/doc/*
 
 EOF
 else
