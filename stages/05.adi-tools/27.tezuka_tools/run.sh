@@ -31,7 +31,7 @@ git clone --single-branch --branch throttle https://gitlab.com/gnuradio_book/flo
 cd /
 chown -R analog:analog /home/analog 
 # REMOVE SSH KEYS
-rm -rf /etc/ssh/*
+#rm -rf /etc/ssh/*
 
 EOF
 else
