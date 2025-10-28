@@ -18,7 +18,7 @@ install -m 666 "${BASH_SOURCE%%/run.sh}"/gpredict.cfg "${BUILD_DIR}/home/analog/
 cp "${BASH_SOURCE%%/run.sh}"/system.pa "${BUILD_DIR}/etc/pulse/"
 cp "${BASH_SOURCE%%/run.sh}"/pulseaudio.service "${BUILD_DIR}/etc/systemd/system/"
 cp "${BASH_SOURCE%%/run.sh}"/mqtt_tezuka.service "${BUILD_DIR}/etc/systemd/system/"
-cp "${BASH_SOURCE%%/run.sh}"/journald.conf"${BUILD_DIR}/etc/systemd/"
+cp "${BASH_SOURCE%%/run.sh}"/journald.conf" ${BUILD_DIR}/etc/systemd/"
 
 chroot "${BUILD_DIR}" << EOF
 systemctl --user disable pulseaudio.socket pulseaudio.service
@@ -28,6 +28,7 @@ systemctl enable mqtt_tezuka
 cd /home/analog/
 git clone --single-branch --branch throttle https://gitlab.com/gnuradio_book/flowcharts.git
 # To be sure that everything under analog is owned by analog
+cd /
 chown -R analog:analog /home/analog 
 # REMOVE SSH KEYS
 rm -rf /etc/ssh/*
