@@ -17,6 +17,9 @@ install -m 644 "${BASH_SOURCE%%/run.sh}"/files/xserver.service "${BUILD_DIR}/lib
 # Add novnc service
 install -m 644 "${BASH_SOURCE%%/run.sh}"/files/novnc.service "${BUILD_DIR}/lib/systemd/system/"
 
+#add config resoltuion for x11
+
+install -m 755 "${BASH_SOURCE%%/run.sh}"/files/xorg.conf	 "${BUILD_DIR}/usr/share/X11/xorg.conf.d"
 
 # Add xserver script
 install -m 755 "${BASH_SOURCE%%/run.sh}"/files/adi-xserver.sh	 "${BUILD_DIR}/usr/bin/"

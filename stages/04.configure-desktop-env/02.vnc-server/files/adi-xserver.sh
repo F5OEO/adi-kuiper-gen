@@ -12,7 +12,8 @@ if dmesg | grep -q "\[drm\]"; then
 	rm -f /usr/share/X11/xorg.conf.d/xorg.conf
 else
 	# Enable dummy display
-	enable_dummy_display.sh
+	#enable_dummy_display.sh
+	#This set /usr/share/X11/xorg.conf.d
 	
 	# Start an X server as user 'analog'
 	sudo -u analog startx -- :0
