@@ -15,10 +15,10 @@ cp -r "${BASH_SOURCE%%/run.sh}"/files/	"${BUILD_DIR}/home/analog/tools/"
 install -d -m 666 "${BUILD_DIR}/home/analog/.config/Gpredict"
 install -m 666 "${BASH_SOURCE%%/run.sh}"/gpredict.cfg "${BUILD_DIR}/home/analog/.config/Gpredict/"
 #set anonymous
-cp "${BASH_SOURCE%%/run.sh}"/system.pa "${BUILD_DIR}/etc/pulse/"
-cp "${BASH_SOURCE%%/run.sh}"/pulseaudio.service "${BUILD_DIR}/etc/systemd/system/"
-cp "${BASH_SOURCE%%/run.sh}"/mqtt_tezuka.service "${BUILD_DIR}/etc/systemd/system/"
-cp "${BASH_SOURCE%%/run.sh}"/journald.conf" ${BUILD_DIR}/etc/systemd/"
+cp "${BASH_SOURCE%%/run.sh}/system.pa" "${BUILD_DIR}/etc/pulse/"
+cp "${BASH_SOURCE%%/run.sh}/pulseaudio.service" "${BUILD_DIR}/etc/systemd/system/"
+cp "${BASH_SOURCE%%/run.sh}/mqtt_tezuka.service" "${BUILD_DIR}/etc/systemd/system/"
+cp "${BASH_SOURCE%%/run.sh}/journald.conf" "${BUILD_DIR}/etc/systemd/"
 
 chroot "${BUILD_DIR}" << EOF
 systemctl --user disable pulseaudio.socket pulseaudio.service
