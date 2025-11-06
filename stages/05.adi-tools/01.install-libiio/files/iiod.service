@@ -12,11 +12,8 @@ ExecStartPre=bash /home/analog/setini.sh
 ExecStart=/usr/sbin/iiod
 KillMode=process
 Restart=on-failure
+ExecStartPost=/bin/chown -R analog:analog /dev/iio_ffs
 
-ExecStartPost=/bin/chown -R analog:analog /sys/bus/iio/
-ExecStartPost=/bin/chmod -R 770 /sys/bus/iio/
-ExecStartPost=/bin/chown -R analog:analog /sys/kernel/debug/
-ExecStartPost=/bin/chmod -R 770 /sys/kernel/debug/
 
 [Install]
 WantedBy=multi-user.target
