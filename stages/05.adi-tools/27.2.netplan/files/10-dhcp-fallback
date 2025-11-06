@@ -1,0 +1,11 @@
+#!/bin/bash
+IFACE="$1"
+STATE="$2"
+
+# If DHCP succeeded, stop dhcpd if running
+if [ "$STATE" = "configured" ]; then
+    systemctl stop dhcpd.service
+else
+    # DHCP failed, static fallback is active
+    systemctl start dhcpd.service
+fi
