@@ -18,7 +18,14 @@ chroot "${BUILD_DIR}" << EOF
 	cd /usr/local/src/gr-cessb
 	mkdir build && cd build && cmake ..
 	make
-	make install 
+	make install
+
+	cd /usr/local/src
+	git clone https://github.com/drmpeg/gr-paint
+	cd gr-paint
+	mkdir build && cd build && cmake ..
+	make
+	make install
 	
 EOF
 
