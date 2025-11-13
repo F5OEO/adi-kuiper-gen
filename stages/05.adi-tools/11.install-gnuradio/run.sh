@@ -11,6 +11,15 @@ if [ "${CONFIG_GNURADIO}" = y ]; then
 # Install Gnuradio 3.10.5
 chroot "${BUILD_DIR}" << EOF
 	apt-get install -y gnuradio gnuradio-dev gr-satellites --no-install-recommends
+	cd /usr/local/src
+
+	# Clone papr
+	git clone ${GITHUB_F5OEO}/gr-cessb
+	cd /usr/local/src/gr-cessb
+	mkdir build && cd build && cmake ..
+	make
+	make install 
+	
 EOF
 
 else
