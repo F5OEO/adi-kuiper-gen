@@ -19,12 +19,13 @@ cp "${BASH_SOURCE%%/run.sh}/system.pa" "${BUILD_DIR}/etc/pulse/"
 cp "${BASH_SOURCE%%/run.sh}/pulseaudio.service" "${BUILD_DIR}/etc/systemd/system/"
 cp "${BASH_SOURCE%%/run.sh}/mqtt_tezuka.service" "${BUILD_DIR}/etc/systemd/system/"
 cp "${BASH_SOURCE%%/run.sh}/journald.conf" "${BUILD_DIR}/etc/systemd/"
+cp "${BASH_SOURCE%%/run.sh}/50-ip" "${BUILD_DIR}/etc/update-motd/"
 
 chroot "${BUILD_DIR}" << EOF
 systemctl --user disable pulseaudio.socket pulseaudio.service
 systemctl enable pulseaudio
 systemctl enable mqtt_tezuka
-
+systemctl disable upower.service
 cd /home/analog/
 git clone --single-branch --branch throttle https://gitlab.com/gnuradio_book/flowcharts.git
 # To be sure that everything under analog is owned by analog
