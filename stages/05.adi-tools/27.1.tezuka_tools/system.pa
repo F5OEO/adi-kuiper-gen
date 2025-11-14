@@ -62,3 +62,13 @@ load-module module-null-sink sink_name=DummySink sink_properties=device.descript
 set-default-sink DummySink
 load-module module-null-source source_name=dummy_input source_properties=device.description=DummyInput
 set-default-source dummy_input
+### Allow TCP connections from local network
+load-module module-native-protocol-tcp auth-anonymous=1
+
+### Publish server via Zeroconf
+.ifexists module-zeroconf-publish.so
+load-module module-zeroconf-publish
+.endif
+
+load-module module-x11-publish display=$DISPLAY xauthority=$XAUTHORITY
+load-module module-x11-xsmp
