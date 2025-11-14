@@ -1,0 +1,15 @@
+#!/bin/bash
+echo -e "\e[33m \
+___________                  __            \n\
+\__    ___/___ __________ __|  | _______   \n\
+  |    |_/ __ \\___   /  |  \  |/ /\__  \  \n\
+  |    |\  ___/ /    /|  |  /    <  / __ \_\n\
+  |____| \___  >_____ \____/|__|_ \(____  /\n\
+             \/      \/          \/     \/ \n\
+Universal Zynq70x/AD936x firmware builder \n\
+Version #BUILD#\n\
+By F5OEO (2024-2025)\n\
+\e[0m"
+
+echo "IP Addresses:"
+hostname -I | awk '{print "  " $0}'
