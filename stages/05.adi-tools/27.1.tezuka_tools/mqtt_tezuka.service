@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=simple
-User=analog
+User=root
 ExecStart=/home/analog/tools/api_controller.sh
 Restart=on-failure
 RestartSec=5
