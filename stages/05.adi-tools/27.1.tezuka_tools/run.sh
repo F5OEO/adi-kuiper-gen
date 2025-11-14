@@ -25,7 +25,9 @@ chroot "${BUILD_DIR}" << EOF
 systemctl --user disable pulseaudio.socket pulseaudio.service
 systemctl enable pulseaudio
 systemctl enable mqtt_tezuka
-systemctl disable upower.service
+#upower is not needed
+apt purge upower
+
 cd /home/analog/
 git clone --single-branch --branch throttle https://gitlab.com/gnuradio_book/flowcharts.git
 # To be sure that everything under analog is owned by analog
