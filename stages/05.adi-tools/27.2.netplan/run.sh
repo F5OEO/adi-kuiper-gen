@@ -23,7 +23,8 @@ chmod +x /usr/lib/networkd-dispatcher/routable.d/10-dhcp-fallback
 systemctl enable systemd.networkd
 systemctl enable networkd-dispatcher
 systemctl enable isc-dhcp-server
-
+# Allowing ping for user
+dpkg-reconfigure iputils-ping
 EOF
 else
 	echo "tezuka_netplan won't be installed because CONFIG_NETPLAN is set to 'n'."
