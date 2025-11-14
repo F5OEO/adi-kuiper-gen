@@ -12,7 +12,6 @@ ExecStartPre=bash /home/analog/setini.sh
 ExecStart=/usr/sbin/iiod
 KillMode=process
 Restart=on-failure
-ExecStartPost=/bin/chown -R analog:analog /dev/iio_ffs
 
 
 [Install]
