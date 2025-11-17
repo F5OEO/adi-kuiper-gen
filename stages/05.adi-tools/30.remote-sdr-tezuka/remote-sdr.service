@@ -1,0 +1,19 @@
+# Maiasdr - Systemd init script
+#
+# Copyright (C) 2025 Evariste F5OEO
+
+[Unit]
+Description=RemoteSDR Daemon
+After=network.target
+ConditionPathExists=/sys/bus/iio
+
+[Service]
+WorkingDirectory=/remsdr
+
+ExecStart=/remsdr/start.sh
+
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+Alias=remote-sdr.service

@@ -1,5 +1,6 @@
 if [ "${CONFIG_REMOTESDR}" = y ]; then
 
+install -m 644 "${BASH_SOURCE%%/run.sh}"/remote-sdr.service	"${BUILD_DIR}/lib/systemd/system/"
 
 chroot "${BUILD_DIR}" << EOF
 npm install -g express cors ejs xmlrpc socket.io
