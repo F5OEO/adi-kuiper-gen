@@ -15,6 +15,12 @@ echo cleaning...
 rm -r /usr/local/src/*
 rm -r /usr/share/doc/*
 
+# To be sure that everything under analog is owned by analog
+
+chown -R analog:analog /home/analog 
+chown -R analog:analog /home/analog/.config/Gpredict
+
+
 EOF
 else
 	echo "clean_rootfs won't be installed because CONFIG_CLEAN_ROOTFS is set to 'n'."
