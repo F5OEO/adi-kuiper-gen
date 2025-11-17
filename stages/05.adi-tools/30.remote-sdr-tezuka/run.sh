@@ -7,6 +7,9 @@ npm install -g express cors ejs xmlrpc socket.io
 cd /usr/local/src
 git clone https://github.com/F5OEO/Remote-SDR-Tezuka 
 mv Remote-SDR-Tezuka/remsdr /remsdr
+
+systemctl enable remote-sdr.service
+
 EOF
 
 else
