@@ -12,7 +12,7 @@ chroot "${BUILD_DIR}" << EOF
 	cd /usr/local/src
 
 	# Clone linux_image_ADI-scripts
-	git clone -b ${BRANCH_LINUX_SCRIPTS} ${GITHUB_ANALOG_DEVICES}/linux_image_ADI-scripts.git
+	git clone -b ${BRANCH_LINUX_SCRIPTS} ${GITHUB_F5OEO}/linux_image_ADI-scripts.git
 
 	# Install linux_image_ADI-scripts
 	cd linux_image_ADI-scripts && make -j $NUM_JOBS
