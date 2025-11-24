@@ -1,0 +1,63 @@
+attrs : {
+    idVendor = 0x0456;
+    idProduct = 0xb671;
+};
+strings = (
+    {
+        lang = 0x409;
+        manufacturer = "Analog Devices Inc.";
+        product = "IIO-USB-Composite";
+        serialnumber = "12345678";
+    }
+);
+functions : {
+    iio_ffs : {
+        instance = "iio_ffs";
+        type = "ffs";
+    };
+
+    acm_usb0 : {
+        instance = "usb0";
+        type = "acm";
+    };
+
+    rndis_usb1 : {
+        instance = "usb1";
+        type = "rndis";
+    };
+
+    storage0 : {
+        instance = "storage0";
+        type = "mass_storage";
+        lun = "/dev/mmcblk0p1";
+        ro = false;
+    };
+};
+configs = (
+    {
+        id = 1;
+        name = "c";
+        attrs : {
+            bmAttributes = 0x80;
+            bMaxPower = 500;
+        };
+        functions = (
+            {
+                name = "ffs.iio_ffs";
+                function = "iio_ffs";
+            },
+            {
+                name = "acm.usb0";
+                function = "acm_usb0";
+            },
+            {
+                name = "rndis.usb1";
+                function = "rndis_usb1";
+            },
+            {
+                name = "mass_storage.storage0";
+                function = "storage0";
+            }
+        );
+    }
+);

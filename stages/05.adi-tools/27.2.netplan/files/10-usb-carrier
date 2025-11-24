@@ -1,0 +1,10 @@
+#!/bin/bash
+IFACE="$1"
+STATE="$2"
+
+
+
+if [ "$IFACE" = "usb0" ]; then
+    
+    systemctl restart isc-dhcp-server.service
+fi
