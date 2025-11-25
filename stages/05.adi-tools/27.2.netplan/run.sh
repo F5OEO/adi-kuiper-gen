@@ -11,7 +11,7 @@ if [ "${CONFIG_NETPLAN}" = y ]; then
 
 install -m 666 "${BASH_SOURCE%%/run.sh}/files/01.net.yaml" "${BUILD_DIR}/etc/netplan/"
 install -m 666 "${BASH_SOURCE%%/run.sh}/files/10-dhcp-fallback" "${BUILD_DIR}/usr/lib/networkd-dispatcher/routable.d/"
-install -m 666 "${BASH_SOURCE%%/run.sh}/files/10-usb-carrier" "${BUILD_DIR}/usr/lib/networkd-dispatcher/carrier.d/"
+install -m 666 "${BASH_SOURCE%%/run.sh}/files/90-usb-dhcprestart" "${BUILD_DIR}/etc/NetworkManager/dispatcher.d/"
 install -m 666 "${BASH_SOURCE%%/run.sh}/files/isc-dhcp-server" "${BUILD_DIR}/etc/default/"
 install -m 666 "${BASH_SOURCE%%/run.sh}/files/dhcpd.conf" "${BUILD_DIR}/etc/dhcp/"
 install -m 666 "${BASH_SOURCE%%/run.sh}/files/resolv.conf" "${BUILD_DIR}/etc/"
@@ -22,7 +22,8 @@ chroot "${BUILD_DIR}" << EOF
 chmod u+s $(which ping)
 
 chmod +x /usr/lib/networkd-dispatcher/routable.d/10-dhcp-fallback
-
+chmod +x /etc/NetworkManager/dispatcher.d/90-usb-dhcprestart
+										  
 systemctl enable systemd.networkd
 systemctl enable networkd-dispatcher
 systemctl enable isc-dhcp-server

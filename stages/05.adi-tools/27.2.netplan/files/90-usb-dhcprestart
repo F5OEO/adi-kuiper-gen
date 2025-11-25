@@ -1,0 +1,17 @@
+#!/bin/bash
+# Note: $1 is the interface name, $2 is the state
+
+IFACE="$1"
+STATE="$2"
+
+# Check if the interface is the USB network interface AND the state is 'up'
+# The interface name on the gadget side is usually the one defined by the gadget driver (e.g., usb0)
+if [ "$IFACE" = "usb0" ]; then
+    case "$STATE" in
+        up)
+            # Restart the DHCP server only when the interface is fully up
+            /bin/sleep 6
+            /bin/systemctl restart isc-dhcp-server.service
+            ;;
+    esac
+fi
