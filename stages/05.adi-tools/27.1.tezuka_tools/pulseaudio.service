@@ -1,12 +1,16 @@
 [Unit]
-Description=PulseAudio Sound Server (system mode)
+Description=PulseAudio Sound System (Headless)
+Requires=sound.target
 After=sound.target
 
 [Service]
-ExecStart=/usr/bin/pulseaudio --system --disallow-exit --daemonize=no
+# Run as the dedicated 'pulse' user
+User=pulse
+Group=audio
+
+# Path to the pulseaudio executable
+ExecStart=/usr/bin/pulseaudio --system --realtime --log-target=journal
 Restart=on-failure
-LimitRTPRIO=99
-LimitMEMLOCK=infinity
 
 [Install]
 WantedBy=multi-user.target
