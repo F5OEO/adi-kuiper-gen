@@ -3,20 +3,33 @@ IFACE="$1"
 STATE="$2"
 
 CONF="/etc/dhcp/dhcpd.conf"
-
-if [ "$IFACE" = "eth0" ]; then
-    if [ "$STATE" = "configured" ]; then
-        # DHCP succeeded → remove eth0 subnet from config
-        sed -i '/subnet 192.168.8.3/,/}/d' $CONF
-    else
-        # DHCP failed → add eth0 subnet back if missing
-        grep -q "192.168.3.0" $CONF || cat >> $CONF <<EOF
+echo "$(date) Dispatcher called for $IFACE with state $STATE route $IP4_GATEWAY" >> /var/log/nm-dispatcher.log
+    case "$STATE" in
+        connectivity-change)
+	if [ "$CONNECTIVITY_STATE" != "FULL" ]; then
+            # Interface is up (cable plugged, carrier present)
+            # Ensure subnet block exists
+            if ! grep -q "subnet 192.168.3.0" "$CONF"; then
+                cat >> "$CONF" <<EOF
 subnet 192.168.3.0 netmask 255.255.255.0 {
   range 192.168.3.10 192.168.3.200;
   option routers 192.168.3.1;
   option domain-name-servers 8.8.8.8, 1.1.1.1;
 }
 EOF
-    fi
-    systemctl restart isc-dhcp-server.service
-fi
+echo "$(date) Dispatcher add subnet $CONNECTIVITY_STATE" >> /var/log/nm-dispatcher.log
+            fi
+            systemctl restart isc-dhcp-server.service
+	fi
+            ;;
+        dhcp4-change)
+            # Interface is down (cable unplugged, carrier lost)
+            # Remove subnet block
+            sed -i '/subnet 192.168.3.0 netmask/,/}/d' "$CONF"
+            systemctl restart isc-dhcp-server.service
+echo "$(date) Remove Subnet" >> /var/log/nm-dispatcher.log
+            ;;
+        *)
+            # Ignore other states
+            ;;
+    esac
