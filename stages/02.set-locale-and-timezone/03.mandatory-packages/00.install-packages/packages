@@ -8,7 +8,6 @@ fake-hwclock
 curl 
 wget
 nano
-htpdate
 zip
 unzip
 parted
