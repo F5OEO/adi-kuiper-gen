@@ -45,6 +45,7 @@ ptton()
     fi
 
     echo 1 > /sys/class/gpio/gpio906/value
+    gpioset  gpiochip0 80=1
     echo "$(date) watchconsoleTX PTT_ON" >> /tmp/lnb.txt    
 
 
@@ -93,6 +94,7 @@ pttoff()
         echo "0x27 $RESULT_VALUE_HEX" > /sys/kernel/debug/iio/iio:device1/direct_reg_access
     fi
     echo 0 > /sys/class/gpio/gpio906/value
+    gpioset  gpiochip0 80=0
     echo "$(date) watchconsoleTX PTT_OFF" >> /tmp/lnb.txt
 }
 

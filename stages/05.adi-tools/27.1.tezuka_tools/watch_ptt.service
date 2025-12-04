@@ -1,0 +1,14 @@
+[Unit]
+Description=Watch PTT
+After=network.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/bin/bash -c '/home/analog/tools/watchconsoletx.sh & /home/analog/tools/watchconsolefreq.sh & wait'
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+

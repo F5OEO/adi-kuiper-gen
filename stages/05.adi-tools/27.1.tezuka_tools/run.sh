@@ -18,6 +18,7 @@ cp "${BASH_SOURCE%%/run.sh}"/gpredict.cfg "${BUILD_DIR}/home/analog/.config/Gpre
 
 cp "${BASH_SOURCE%%/run.sh}/pulseaudio.service" "${BUILD_DIR}/etc/systemd/system/"
 cp "${BASH_SOURCE%%/run.sh}/mqtt_tezuka.service" "${BUILD_DIR}/etc/systemd/system/"
+cp "${BASH_SOURCE%%/run.sh}/watch_ptt.service" "${BUILD_DIR}/etc/systemd/system/"
 cp "${BASH_SOURCE%%/run.sh}/journald.conf" "${BUILD_DIR}/etc/systemd/"
 cp "${BASH_SOURCE%%/run.sh}/50-ip" "${BUILD_DIR}/etc/update-motd/"
 cp "${BASH_SOURCE%%/run.sh}/ntp.conf" "${BUILD_DIR}/etc/ntpsec/"
@@ -26,6 +27,7 @@ cp "${BASH_SOURCE%%/run.sh}/90set_pulseaudio_server" "${BUILD_DIR}/etc/X11/"
 
 chroot "${BUILD_DIR}" << EOF
 systemctl enable mqtt_tezuka
+systemctl enable watch_ptt
 #upower is not needed
 apt purge upower
 
