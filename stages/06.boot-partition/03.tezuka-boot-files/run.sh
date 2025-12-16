@@ -7,7 +7,7 @@
 # Author: Larisa Radu <larisa.radu@analog.com>
 
 SERVER="https://github.com/F5OEO/tezuka_fw/releases/download"
-VERSION="0.2.2"
+VERSION="0.2.3"
 TARGET_BOOT="${BUILD_DIR}"/usr/local/src/boot
 
 if [ "${CONFIG_TEZUKA_BOOT_FILES}" = y ]; then
